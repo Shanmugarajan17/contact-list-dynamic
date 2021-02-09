@@ -1,0 +1,84 @@
+.bg_topheader {
+    background-color: #ccc;
+    padding: 2%;
+    border-radius: 2px;
+    text-align: center;
+    margin: 0;
+    margin-bottom: 3%;
+}
+.header {
+    text-align: center;
+}
+.right_sidelist ul {
+    list-style-type: none;
+}
+.right_sidelist ul li {
+    padding: 2%;
+}
+.right_sidebg {
+    padding: 2%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #cccccc1f;
+}
+.left_sidebg {
+    padding: 2%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+}
+/*start nav bar*/
+.custom_nav {
+    background-color: #ccc;
+    padding: 1%;
+    margin-bottom: 3%;
+    display: flex;
+}
+.wid_50 {
+    width: 50%;
+}
+.addbtn {
+    background-color: #0a860a;
+    border: none;
+    color: #fff;
+    padding: 10px 3%;
+    border-radius: 5px;
+    margin-bottom: 2%;
+    float: right;
+}
+.closecustom {
+    background-color: red;
+    padding: 1% 5%;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    margin: 2%;
+}
+.backbtnedit {
+    background-color: #0a860a;
+    padding: 1% 5%;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    margin: 2%;
+}
+.bbr {
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+}
+.wid_40 {
+    width: 20%;
+}
+.wid_10 {
+    width: 30%;
+    margin-top: 16px;
+}
+.btn_add_contact {
+    display: block;
+    margin: 3% auto;
+    border: none;
+    color: #fff;
+    background-color: #0a860a;
+    padding: 2% 6%;
+    border-radius: 5px;
+}

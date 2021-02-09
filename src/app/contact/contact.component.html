@@ -1,0 +1,185 @@
+<nav class="custom_nav">
+    <div class="wid_50">Logo</div>
+    <div class="wid_40">
+        <form #customFormName="ngForm" class="" novalidate>
+            <div class="cardaddparking modalcustomwid">
+                <div class="row">
+                    <div class="col-lg-12 mbl-views">
+                        <div class="form-wrapper">
+                            <label for="">Contact Name</label>
+                            <select
+                                (change)="changeCustomerNAme(CustomerName)"
+                                [(ngModel)]="customerNameData"
+                                class="form-control"
+                                #CustomerName="ngModel"
+                                name="CustomerName"
+                                [ngClass]="{ 'is-invalid': customFormName.submitted && CustomerName.invalid }"
+                                required
+                            >
+                                <option selected value="" disabled>Select Name</option>
+                                <option *ngFor="let names of ListOFName" [ngValue]="names.id">{{names.Contactname}}</option>
+                            </select>
+                            <!--   <div *ngIf="customFormName.submitted && CustomerName.invalid" class="invalid-feedback">
+                    <div *ngIf="CustomerName.errors.required">Please Select Name</div>
+                  </div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="wid_10">
+        <button class="btn_add_contact" (click)="addContactNames()"><i class="fa fa-plus-circle" aria-hidden="true"></i> &nbsp;&nbsp;&nbsp;Add Contact Name</button>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <button class="addbtn" (click)="showPopup()"><i class="fa fa-plus-circle" aria-hidden="true"></i> &nbsp;&nbsp;&nbsp;Add Contact List</button>
+        </div>
+        <div class="col-lg-6">
+            <div class="left_sidebg">
+                <div class="row bg_topheader">
+                    <div class="col-lg-6">
+                        Basic Info
+                    </div>
+                    <div class="col-lg-6">
+                        Company Name
+                    </div>
+                </div>
+                <div *ngFor="let Customer of ArrayDefalut">
+                    <div class="row bbr" *ngIf="customerID===Customer.id" (click)="customerDataclick(Customer)">
+                        <div class="col-lg-6">
+                            <div class="header">
+                                <h5><span>{{Customer.name}}</span></h5>
+                                <p>{{Customer.Email}}</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="header">
+                                <h5>{{Customer.companyName}}</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6" *ngIf="getSingleCustomerData">
+            <div class="right_sidebg">
+                <div class="header">
+                    <h5>{{getSingleCustomerData.name}}</h5>
+                    <p>{{getSingleCustomerData.Email}}</p>
+                </div>
+                <div class="right_sidelist">
+                    <ul>
+                        <li>Full Name : {{getSingleCustomerData.name}}</li>
+                        <li>Email : {{getSingleCustomerData.Email}}</li>
+                        <li>Phone : {{getSingleCustomerData.numberPhone}}</li>
+                        <li>Company Name : {{getSingleCustomerData.companyName}}</li>
+                        <li>Address : {{getSingleCustomerData.address}}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- modal popup Start -->
+
+<div class="modal" style="background-color: rgba(0, 0, 0, 0.6);" [style.display]="customFormpopup ? 'block' : 'none'">
+    <div class="modal-dialog mt_cancel">
+        <div class="modal-content modal-con model_invoic_mob">
+            <div class="modal-body modal-bo">
+                <form #customForm="ngForm" class="" novalidate>
+                    <div class="cardaddparking modalcustomwid">
+                        <div class="row">
+                            <div class="col-lg-12 mbl-views">
+                                <div class="form-wrapper">
+                                    <label for="">Full Name<sup> *</sup></label>
+                                    <input type="text" class="form-control" #name="ngModel" name="name" ngModel [ngClass]="{ 'is-invalid': customForm.submitted && name.invalid }" required />
+                                    <div *ngIf="customForm.submitted && name.invalid" class="invalid-feedback">
+                                        <div>Please Enter Name</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 mbl-views">
+                                <div class="form-wrapper">
+                                    <label for="">Email<sup> *</sup></label>
+                                    <input type="Email" class="form-control" #Email="ngModel" name="Email" ngModel [ngClass]="{ 'is-invalid': customForm.submitted && Email.invalid }" required email />
+                                    <div *ngIf="customForm.submitted && Email.invalid" class="invalid-feedback">
+                                        <div>Please Enter Email</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 mbl-views">
+                                <div class="form-wrapper">
+                                    <label for="">Phone Number<sup> *</sup></label>
+                                    <input type="number" class="form-control" #numberPhone="ngModel" name="numberPhone" ngModel [ngClass]="{ 'is-invalid': customForm.submitted && numberPhone.invalid }" required />
+                                    <div *ngIf="customForm.submitted && numberPhone.invalid" class="invalid-feedback">
+                                        <div>Please Enter Phone</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 mbl-views">
+                                <div class="form-wrapper">
+                                    <label for="">Company Name<sup> *</sup></label>
+                                    <input type="text" class="form-control" #companyName="ngModel" name="companyName" ngModel [ngClass]="{ 'is-invalid': customForm.submitted && companyName.invalid }" required />
+                                    <div *ngIf="customForm.submitted && companyName.invalid" class="invalid-feedback">
+                                        <div>Please Enter companyName</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 mbl-views">
+                                <div class="form-wrapper">
+                                    <label for="">Address<sup> *</sup></label>
+                                    <textarea class="form-control" #address="ngModel" name="address" ngModel [ngClass]="{ 'is-invalid': customForm.submitted && address.invalid }" required></textarea>
+                                    <!-- <input type="text" class="form-control" #address="ngModel" address="address" ngModel [ngClass]="{ 'is-invalid': customForm.submitted && address.invalid }" required> -->
+                                    <div *ngIf="customForm.submitted && address.invalid" class="invalid-feedback">
+                                        <div>Please Enter address</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="text-center">
+                            <button type="button" class="closecustom" (click)="closepopup()">Close</button>
+                            <button type="submit" class="backbtnedit" (click)="customclick(customForm)">Save</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- add contact names -->
+
+<div class="modal" style="background-color: rgba(0, 0, 0, 0.6);" [style.display]="customFormpopupConatct ? 'block' : 'none'">
+    <div class="modal-dialog mt_cancel">
+        <div class="modal-content modal-con model_invoic_mob">
+            <div class="modal-body modal-bo">
+                <form #customFormaddContact="ngForm" class="" novalidate>
+                    <div class="cardaddparking modalcustomwid">
+                        <div class="row">
+                            <div class="col-lg-12 mbl-views">
+                                <div class="form-wrapper">
+                                    <label for="">Full Name<sup> *</sup></label>
+                                    <input type="text" class="form-control" #Contactname="ngModel" name="Contactname" ngModel [ngClass]="{ 'is-invalid': customFormaddContact.submitted && Contactname.invalid }" required />
+                                    <div *ngIf="customFormaddContact.submitted && Contactname.invalid" class="invalid-feedback">
+                                        <div>Please Enter Name</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="text-center">
+                            <button type="button" class="closecustom" (click)="closepopup()">Close</button>
+                            <button type="submit" class="backbtnedit" (click)="customclickadd(customFormaddContact)">Add</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
